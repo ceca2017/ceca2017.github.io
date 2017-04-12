@@ -2,33 +2,75 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title></title>
+        <title>BMI Calculator</title>
+        <style>
+            .metric {
+               display: none;
+            }
+            .imperial {
+                display: none;
+            }
+            #calculate {
+                display: none;
+            }
+        </style>
         <script src="src/person.js"></script>
         <script src="src/bmi_calculator.js"></script>
-        <script src='https://code.jquery.com/jquery-2.1.4.js'></script>
+        <script src="https://code.jquery.com/jquery-2.1.4.js"></script>
         <script type="text/javascript">
             $(document).ready(function() {
                 $('#calculate').click(function() {
-                    var w = parseFloat($('#weight').val());
-                    var h = parseFloat($('#height').val());
+                    var w;
+                    var h;
+                    if ($('input[name=measure]:checked').val() == 'metric') {
+                        w = parseFloat($('#weight').val());
+                        h = parseFloat($('#height').val());
+                    }
+                    else if ($('input[name=measure]:checked').val() == 'imperial') {
+                        var w_lb = parseFloat($('#weight_lb').val());
+                        var h_ft = parseFloat($('#height_ft').val());
+                        var h_in = parseFloat($('#height_in').val());
+                        h = (h_ft*12 + h_in)*2.54;
+                        w = w_lb/2.2046;
+                    }
                     var person = new Person({weight: w, height: h});
                     person.calculate_bmi();
+                    $('#result').show();
                     $('#display_value').html('Your BMI is ' + person.bmiValue);
                     $('#display_message').html('and you are ' + person.bmiMessage);
                 });
+                $('input[type=radio][name=measure]').change(function() {
+                    $('#calculate').show();
+                    $('#result').hide();
+                    if (this.value == 'metric') {
+                        $('.imperial').hide();
+                        $('.metric').show();
+                    }
+                    else if (this.value == 'imperial') {
+                        $('.imperial').show();
+                        $('.metric').hide();
+                    }
+                })
             });
         </script>
     </head>
     <body>
+      <h1>Calculate your BMI</h1>
+      <p>Please choose your mode of measurement, then enter your weight and height.</p>
+      <p>Press calculate to get your BMI value and the class you belong to:</p>
         <form>
-            <input type="text" id="weight" placeholder="Weight">
-            <input type="text" id="height" placeholder="Height">
+            <input type="radio" name="measure" value="metric"> Metric <br>
+            <input type="radio" name="measure" value="imperial"> Imperial <br>
+                <input type="text" id="weight" class="metric" placeholder="Weight">
+                <input type="text" id="height" class="metric" placeholder="Height">
+                <input type="text" id="weight_lb" class="imperial" placeholder="Weight in lb">
+                <input type="text" id="height_ft" class="imperial" placeholder="Height in in">
+                <input type="text" id="height_in" class="imperial" placeholder="and inches">
             <input type="button" id="calculate" value="Calculate">
         </form>
-        <div>
+        <div id="result">
             <span id="display_value"></span>
             <span id="display_message"></span>
-
         </div>
     </body>
 </html>

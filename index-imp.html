@@ -9,12 +9,13 @@
         <script type="text/javascript">
             $(document).ready(function() {
                 $('#calculate').click(function() {
-                    var w = parseFloat($('#weight_lb').val());
+                    var w_lb = parseFloat($('#weight_lb').val());
                     var h_ft = parseFloat($('#height_ft').val());
                     var h_in = parseFloat($('#height_in').val());
-                    var h = h_ft*12 + h_in;
-                    var person = new Person({weight_lb: w, height_in: h});
-                    person.calculate_bmi_imp();
+                    var h = (h_ft*12 + h_in)*2.54;
+                    var w = w_lb/2.2046;
+                    var person = new Person({weight: w, height: h});
+                    person.calculate_bmi();
                     $('#display_value').html('Your BMI is ' + person.bmiValue);
                     $('#display_message').html('and you are ' + person.bmiMessage);
                 });

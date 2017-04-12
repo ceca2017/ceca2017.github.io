@@ -1,11 +1,11 @@
-describe("Person", function() {
+/* describe("Person", function() {
   var person;
 
   beforeEach(function() {
     person = new Person({weight_lb: 170, height_in: 75});
   });
 
-  it("should have weight of 170 lb", function() {
+  /*it("should have weight of 170 lb", function() {
     expect(person.weight_lb).toEqual(170);
   });
 
@@ -22,4 +22,4 @@ describe("Person", function() {
     person.calculate_bmi_imp();
     expect(person.bmiMessage).toEqual("Normal");
   })
-});
+}); */
