@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+        <script src="src/person.js"></script>
+        <script src="src/bmi_calculator.js"></script>
+        <script src='https://code.jquery.com/jquery-2.1.4.js'></script>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $('#calculate').click(function() {
+                    var w = parseFloat($('#weight_lb').val());
+                    var h_ft = parseFloat($('#height_ft').val());
+                    var h_in = parseFloat($('#height_in').val());
+                    var h = h_ft*12 + h_in;
+                    var person = new Person({weight_lb: w, height_in: h});
+                    person.calculate_bmi_imp();
+                    $('#display_value').html('Your BMI is ' + person.bmiValue);
+                    $('#display_message').html('and you are ' + person.bmiMessage);
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <form>
+            <input type="text" id="weight_lb" placeholder="Weight in pounds">
+            <input type="text" id="height_ft" placeholder="Height in feet">
+            <input type="text" id="height_in" placeholder="and inches">
+            <input type="button" id="calculate" value="Calculate">
+        </form>
+        <div>
+            <span id="display_value"></span>
+            <span id="display_message"></span>
+
+        </div>
+    </body>
+</html>
