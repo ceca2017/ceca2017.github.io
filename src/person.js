@@ -1,6 +1,16 @@
 function Person(attr) {
-    this.weight = attr.weight;
-    this.height = attr.height;
+    var w;
+    var h;
+    if (attr[measure_type] == 'metric') {
+      w = attr[weight];
+      h = attr[height];
+    }
+    else if (attr[measure_type] == 'imperial') {
+      w = attr[weight_lb]/2.2046;
+      h = (attr[height_ft]*12 + attr[height_in])*2.54;
+    }
+    this.weight = w;
+    this.height = h;
     //this.weight_lb = attr.weight_lb;
     //this.height_in = attr.height_in;
 };

@@ -19,38 +19,40 @@
         <script src="https://code.jquery.com/jquery-2.1.4.js"></script>
         <script type="text/javascript">
             $(document).ready(function() {
+              $('input[type=radio][name=measure]').change(function() {
+                  $('#calculate').show();
+                  $('#result').hide();
+                  if (this.value == 'metric') {
+                      $('.imperial').hide();
+                      $('.metric').show();
+                  }
+                  else if (this.value == 'imperial') {
+                      $('.imperial').show();
+                      $('.metric').hide();
+                  }
+                });
                 $('#calculate').click(function() {
                     var w;
                     var h;
+                    var person;
                     if ($('input[name=measure]:checked').val() == 'metric') {
-                        w = parseFloat($('#weight').val());
-                        h = parseFloat($('#height').val());
+                        var w = parseFloat($('#weight').val());
+                        var h = parseFloat($('#height').val());
+                        person = new Person({weight: w, height: h, measure_type: 'metric'});
                     }
                     else if ($('input[name=measure]:checked').val() == 'imperial') {
                         var w_lb = parseFloat($('#weight_lb').val());
                         var h_ft = parseFloat($('#height_ft').val());
                         var h_in = parseFloat($('#height_in').val());
-                        h = (h_ft*12 + h_in)*2.54;
-                        w = w_lb/2.2046;
+                        person = new Person({weight_lb: w,_lb height_ft: h_ft, height_in: h_in, measure_type: 'imperial'});
+                        //h = (h_ft*12 + h_in)*2.54;
+                        //w = w_lb/2.2046;
                     }
-                    var person = new Person({weight: w, height: h});
                     person.calculate_bmi();
                     $('#result').show();
                     $('#display_value').html('Your BMI is ' + person.bmiValue);
                     $('#display_message').html('and you are ' + person.bmiMessage);
                 });
-                $('input[type=radio][name=measure]').change(function() {
-                    $('#calculate').show();
-                    $('#result').hide();
-                    if (this.value == 'metric') {
-                        $('.imperial').hide();
-                        $('.metric').show();
-                    }
-                    else if (this.value == 'imperial') {
-                        $('.imperial').show();
-                        $('.metric').hide();
-                    }
-                })
             });
         </script>
     </head>
