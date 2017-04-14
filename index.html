@@ -4,15 +4,34 @@
         <meta charset="UTF-8">
         <title>BMI Calculator</title>
         <style>
-            .metric {
-               display: none;
-            }
-            .imperial {
-                display: none;
-            }
-            #calculate {
-                display: none;
-            }
+          #bmi_calc {
+            font-family: arial, sans-serif;
+            background-color: Black;
+            color: White;
+            position: relative;
+            min-width: 300px;
+            max-width: 600px;
+            border: 10px groove #af3432;
+            border-radius: 10px;
+            padding: 10px 30px 30px 30px;
+            margin: 30px;
+            box-sizing: border-box;
+          }
+          .metric {
+             display: none;
+          }
+          .imperial {
+              display: none;
+          }
+          #calculate {
+              display: none;
+          }
+          h1 {
+            text-align: center;
+          }
+          #result {
+            padding-top: 15px;
+          }
         </style>
         <script src="src/person.js"></script>
         <script src="src/bmi_calculator.js"></script>
@@ -32,8 +51,8 @@
                   }
                 });
                 $('#calculate').click(function() {
-                    var w;
-                    var h;
+                    //var w;  2017-04-15 took out the declarations from here.
+                    //var h;
                     var person;
                     if ($('input[name=measure]:checked').val() == 'metric') {
                         var w = parseFloat($('#weight').val());
@@ -55,22 +74,25 @@
         </script>
     </head>
     <body>
-      <h1>Calculate your BMI</h1>
-      <p>Please choose your mode of measurement, then enter your weight and height.</p>
-      <p>Press calculate to get your BMI value and the class you belong to:</p>
-        <form>
-            <input type="radio" name="measure" id="metric_true" value="metric"> Metric <br>
-            <input type="radio" name="measure" id="imperial_true" value="imperial"> Imperial <br>
-                <input type="text" id="weight" class="metric" placeholder="Weight in kg">
-                <input type="text" id="height" class="metric" placeholder="Height in cm">
-                <input type="text" id="weight_lb" class="imperial" placeholder="Weight in lb">
-                <input type="text" id="height_ft" class="imperial" placeholder="Height in in">
-                <input type="text" id="height_in" class="imperial" placeholder="and inches">
-            <input type="button" id="calculate" value="Calculate">
-        </form>
-        <div id="result">
-            <span id="display_value"></span>
-            <span id="display_message"></span>
+      <div id="bmi_calc">
+        <h1>Calculate your BMI</h1>
+        <p>Please choose your mode of measurement, <br>
+          then enter your weight and height.</p>
+        <p>Press calculate to get your BMI value and the class you belong to:</p>
+          <form>
+              <input type="radio" name="measure" id="metric_true" value="metric"> Metric (cm, kg) <br>
+              <input type="radio" name="measure" id="imperial_true" value="imperial"> Imperial (lb, ft, in) <br>
+                  <input type="text" id="weight" class="metric" placeholder="Weight in kg">
+                  <input type="text" id="height" class="metric" placeholder="Height in cm">
+                  <input type="text" id="weight_lb" class="imperial" placeholder="Weight in lb">
+                  <input type="text" id="height_ft" class="imperial" placeholder="Height in ft">
+                  <input type="text" id="height_in" class="imperial" placeholder="and inches">
+              <input type="button" id="calculate" value="Calculate">
+          </form>
+          <div id="result">
+              <span id="display_value"></span>
+              <span id="display_message"></span>
+          </div>
         </div>
     </body>
 </html>
