@@ -1,11 +1,13 @@
 describe("Person", function() {
   var person;
 
+  debugger;
   beforeEach(function() {
-    person = new Person({weight: 90, height: 186});
+    person = new Person({weight: 90, height: 186, measure_type: 'metric'});
   });
 
   it("should have weight of 90", function() {
+    console.log(person);
     expect(person.weight).toEqual(90);
   });
 

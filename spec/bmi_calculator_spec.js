@@ -3,7 +3,7 @@ describe("BMICalculator", function() {
     var person;
 
     beforeEach(function() {
-        person = new Person({weight: 90, height: 186});
+        person = new Person({weight: 90, height: 186, measure_type: 'metric'});
         calculator = new BMICalculator();
     });
 
