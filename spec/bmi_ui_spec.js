@@ -1,42 +1,42 @@
-/* describe('BMI_UI - index.html', function() {
+ describe('BMI_UI - index.html', function() {
     beforeEach(function() {
         jasmine.getFixtures().fixturesPath = '.';
         loadFixtures('index.html');
         $.holdReady(false);
     });
 });
-*/
 
 describe('BMI_UI - index.html', function() {
+
+    it('expect weight field to show', function() {
+      expect($('#weight')).toExist();
+    });
+
+    it('captures weight as 90', function() {
+      $('#weight').val('90');
+      expect($('#weight').val()).toEqual('90');
+    });
+
+
   beforeEach(function() {
-    jasmine.getFixtures().fixturesPath = '.';
-    loadFixtures('index.html');
-    $.holdReady(false);
+    //jasmine.getFixtures().fixturesPath = '.';
+    //loadFixtures('index.html');
+    //$.holdReady(false);
     $('#metric_true').click(); //.trigger('click');
     $('#weight').val('90');
     $('#height').val('186');
     $('#calculate').trigger('click');
   });
 
-  it('expect weight field to show', function() {
-    expect($('#weight')).toExist();
+  it('display BMI Value', function() {
+    expect($('#display_value').text()).toEqual('Your BMI is 26.01');
+  });
+
+  it('displays BMI Message', function() {
+    expect($('#display_message').text()).toEqual('and you are Overweight');
   });
 
   /*
-  it('captures weight as 90', function() {
-    expect($('#weight')).toEqual('90');
-  });
-
-
-  xit('display BMI Value', function() {
-    expect($('#display_value').text()).toBe('Your BMI is 26.01');
-  });
-
-  xit('displays BMI Message', function() {
-    expect($('#display_message').text()).toBe('and you are Overweight');
-  });
-  */
-
   beforeEach(function() {
     jasmine.getFixtures().fixturesPath = '.';
     loadFixtures('index.html');
@@ -55,4 +55,5 @@ describe('BMI_UI - index.html', function() {
   it('displays BMI Message', function() {
     expect($('#display_message').text()).toBe('and you are Normal');
   });
+  */
 });
