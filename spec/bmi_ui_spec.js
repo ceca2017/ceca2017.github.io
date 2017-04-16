@@ -35,8 +35,9 @@ describe('BMI_UI - index.html', function() {
   it('displays BMI Message', function() {
     expect($('#display_message').text()).toEqual('and you are Overweight');
   });
+});
 
-  /*
+describe('BMI_UI (imp) - index.html', function() {
   beforeEach(function() {
     jasmine.getFixtures().fixturesPath = '.';
     loadFixtures('index.html');
@@ -48,12 +49,11 @@ describe('BMI_UI - index.html', function() {
     $('#calculate').trigger('click');
   });
 
-  it('display BMI Value', function() {
+  it('display BMI Value (imp)', function() {
     expect($('#display_value').text()).toBe('Your BMI is 21.25');
   });
 
-  it('displays BMI Message', function() {
+  it('displays BMI Message (imp)', function() {
     expect($('#display_message').text()).toBe('and you are Normal');
   });
-  */
 });
